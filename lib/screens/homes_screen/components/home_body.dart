@@ -10,13 +10,11 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State {
-  late PageController _pageController;
   int activePage = 1;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.8);
   }
 
   @override
@@ -27,7 +25,9 @@ class _HomeBodyState extends State {
           horizontal: 16.0,
           vertical: 24.0,
         ),
-        child: carousel(),
+        child: Column(
+          children: [carousel(), carousel()],
+        ),
       ),
     );
   }
