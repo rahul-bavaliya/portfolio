@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/utils/constants.dart';
 
 import '../../utils/globals.dart';
+import 'components/home_body.dart';
 import 'components/home_header.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -86,27 +87,7 @@ class _HomeScreeneState extends State<HomeScreen> {
                     child: HomeHeader(),
                   ),
                   SizedBox(
-                    child: Placeholder(),
-                  ),
-                  SizedBox(
-                    child: Placeholder(),
-                  ),
-                  SizedBox(
-                    child: Placeholder(),
-                  ),
-                  SizedBox(
-                    child: Placeholder(),
-                  ),
-                  SizedBox(
-                    child: Placeholder(),
-                  ),
-                  SizedBox(
-                    child: Placeholder(),
-                  ),
-                  SizedBox(
-                    child: Placeholder(
-                      key: ValueKey('blogKey'),
-                    ),
+                    child: HomeBody(),
                   ),
                 ],
               ),
