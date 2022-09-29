@@ -1,6 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
+
+import '../../../utils/constants.dart';
+import '../../../utils/screen_helper.dart';
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -10,60 +14,49 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State {
-  late PageController _pageController;
   int activePage = 1;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.8);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-          vertical: 24.0,
-        ),
-        child: carousel(),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => ScreenHelper(
+        desktop: _buildUi(kDesktopMaxWidth),
+        tablet: _buildUi(kTabletMaxWidth),
+        mobile: _buildUi(getMobileMaxWidth(context)),
+        key: const ObjectKey("homebody_img1_screenHelper"),
+      );
 
-  carousel() => Container(
-          child: CarouselSlider(
-        options: CarouselOptions(
-          autoPlay: true,
-          aspectRatio: 2.0,
-          enlargeCenterPage: true,
-          enlargeStrategy: CenterPageEnlargeStrategy.height,
-          pageViewKey: const PageStorageKey<String>('carousel_slider'),
+  _buildUi(double width) => Center(
+        child: LayoutBuilder(
+          builder: (context, constraints) => Flex(
+              mainAxisAlignment: MainAxisAlignment.center,
+              direction:
+                  constraints.maxWidth > 720 ? Axis.horizontal : Axis.vertical,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  child: Image.network(
+                    "https://cdn.dribbble.com/users/2424687/screenshots/5575995/media/f7a6b317e47c7ff59bcbeecb33d65638.png",
+                    width: constraints.maxWidth > 720.0
+                        ? constraints.maxWidth * 0.50
+                        : 350.0,
+                    alignment: Alignment.center,
+                  ),
+                ),
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  child: Image.network(
+                    "https://cdn.dribbble.com/users/2424687/screenshots/5575995/media/f7a6b317e47c7ff59bcbeecb33d65638.png",
+                    width: constraints.maxWidth > 720.0
+                        ? constraints.maxWidth * 0.50
+                        : 350.0,
+                    alignment: Alignment.center,
+                  ),
+                ),
+              ]),
         ),
-        items: imageSliders,
-      ));
+      );
 }
-
-List<String> imagesList = [
-  "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1019771/pexels-photo-1019771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1020016/pexels-photo-1020016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1550913/pexels-photo-1550913.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-];
-
-final List<Widget> imageSliders = imagesList
-    .map((item) => Container(
-          child: Container(
-            margin: const EdgeInsets.all(5.0),
-            child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                child: Stack(
-                  children: <Widget>[
-                    Image.network(item, fit: BoxFit.cover, width: 1000.0),
-                  ],
-                )),
-          ),
-        ))
-    .toList();

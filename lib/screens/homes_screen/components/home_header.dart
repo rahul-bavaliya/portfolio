@@ -72,6 +72,7 @@ class HomeHeader extends StatelessWidget {
               const HeaderLogo(),
               GestureDetector(
                 onTap: () {
+                  logger.i('Drawer Clicked.');
                   Globals().scaffoldHomeKey.currentState?.openEndDrawer();
                 },
                 child: const Icon(
