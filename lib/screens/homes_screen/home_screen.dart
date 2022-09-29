@@ -4,6 +4,7 @@ import 'package:my_portfolio/utils/constants.dart';
 import '../../utils/globals.dart';
 import 'components/home_body.dart';
 import 'components/home_header.dart';
+import 'dart:ui';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -35,6 +36,7 @@ class _HomeScreeneState extends State<HomeScreen> {
                   vertical: 24.0,
                 ),
                 child: ListView.separated(
+                  shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
                     return headerItems[index].isButton
                         ? MouseRegion(
