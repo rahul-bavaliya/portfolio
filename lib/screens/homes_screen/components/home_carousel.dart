@@ -194,8 +194,8 @@ List<HomeCarouselItem> carouselItems = List.generate(
           top: 400,
           child: TextButton(
             onPressed: () {},
-            child:
-          
+            child: Container(),
+          ),
         )
       ],
     ),
