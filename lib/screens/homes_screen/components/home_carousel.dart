@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/models/home_carousel_item.dart';
+import 'package:my_portfolio/utils/downloads.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 
 import '../../../utils/constants.dart';
@@ -35,7 +38,7 @@ Widget _buildDesktop(BuildContext context, Widget text, Widget image) {
     child: ResponsiveWrapper(
       maxWidth: kDesktopMaxWidth,
       minWidth: kDesktopMaxWidth,
-      defaultScale: false,
+      defaultScale: true,
       child: Row(
         children: [
           Expanded(
@@ -43,7 +46,7 @@ Widget _buildDesktop(BuildContext context, Widget text, Widget image) {
           ),
           Expanded(
             child: image,
-          )
+          ),
         ],
       ),
     ),
@@ -52,22 +55,12 @@ Widget _buildDesktop(BuildContext context, Widget text, Widget image) {
 
 // Mid screens
 Widget _buildTablet(BuildContext context, Widget text, Widget image) {
-  return Center(
-    child: ResponsiveWrapper(
-      maxWidth: kTabletMaxWidth,
-      minWidth: kTabletMaxWidth,
-      defaultScale: false,
-      child: Row(
-        children: [
-          Expanded(
-            child: text,
-          ),
-          Expanded(
-            child: image,
-          )
-        ],
-      ),
+  return Container(
+    constraints: BoxConstraints(
+      maxWidth: getMobileMaxWidth(context),
     ),
+    width: double.infinity,
+    child: text,
   );
 }
 
@@ -155,48 +148,72 @@ List<HomeCarouselItem> carouselItems = List.generate(
           const SizedBox(
             height: 25.0,
           ),
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Container(
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              height: 48.0,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 28.0,
-              ),
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "GET STARTED",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13.0,
-                    fontWeight: FontWeight.bold,
+          Wrap(
+            children: [
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  height: 48.0,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 28.0,
+                  ),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "GET STARTED",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+              const SizedBox(
+                width: 25.0,
+                height: 25.0,
+              ),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: Container(
+                  height: 48.0,
+                  child: TextButton.icon(
+                    onPressed: () {
+                      downloadFile('assets/files/Rahul_Resume.pdf');
+                    },
+                    icon: const Icon(
+                      Icons.download,
+                      size: 24.0,
+                      color: Colors.white,
+                    ),
+                    label: const Text(
+                      "DOWNLOAD CV",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
           )
         ],
       ),
     ),
     image: Stack(
       children: <Widget>[
-        Container(
+        SizedBox(
           width: 512,
           height: 512,
           child: Image.asset('assets/images/home_img_1.png'),
         ),
-        Positioned(
-          left: 310,
-          top: 400,
-          child: TextButton(
-            onPressed: () {},
-            child: Container(),
-          ),
-        )
       ],
     ),
   ),
