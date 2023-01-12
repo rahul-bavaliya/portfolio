@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/models/home_carousel_item.dart';
+import 'package:my_portfolio/utils/downloads.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 
 import '../../../utils/constants.dart';
@@ -37,7 +38,7 @@ Widget _buildDesktop(BuildContext context, Widget text, Widget image) {
     child: ResponsiveWrapper(
       maxWidth: kDesktopMaxWidth,
       minWidth: kDesktopMaxWidth,
-      defaultScale: false,
+      defaultScale: true,
       child: Row(
         children: [
           Expanded(
@@ -147,7 +148,7 @@ List<HomeCarouselItem> carouselItems = List.generate(
           const SizedBox(
             height: 25.0,
           ),
-          Row(
+          Wrap(
             children: [
               MouseRegion(
                 cursor: SystemMouseCursors.click,
@@ -175,31 +176,27 @@ List<HomeCarouselItem> carouselItems = List.generate(
               ),
               const SizedBox(
                 width: 25.0,
+                height: 25.0,
               ),
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: Container(
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
                   height: 48.0,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 28.0,
-                  ),
                   child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      downloadFile('assets/files/Rahul_Resume.pdf');
+                    },
                     icon: const Icon(
                       Icons.download,
                       size: 24.0,
                       color: Colors.white,
                     ),
                     label: const Text(
-                      "DOWNLOAD RESUME",
+                      "DOWNLOAD CV",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 13.0,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w900,
                       ),
                     ),
                   ),
