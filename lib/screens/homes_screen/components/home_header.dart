@@ -38,19 +38,17 @@ class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: ScreenHelper(
-        key: const ObjectKey("homeHeader_screenHelper"),
-        desktop: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: buildHeader(),
+  Widget build(BuildContext context) => Container(
+        child: ScreenHelper(
+          key: const ObjectKey("homeHeader_screenHelper"),
+          desktop: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: buildHeader(),
+          ),
+          mobile: buildMobileHeader(),
+          tablet: buildHeader(),
         ),
-        mobile: buildMobileHeader(),
-        tablet: buildHeader(),
-      ),
-    );
-  }
+      );
 
   buildHeader() => Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -91,48 +89,46 @@ class HeaderLogo extends StatelessWidget {
   const HeaderLogo({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            logger.i('Logo clicked.');
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const HomeScreen(
-                        title: 'Home',
-                      )), // this mymainpage is your page to refresh
-              (Route<dynamic> route) => false,
-            );
-          },
-          child: RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: "RB",
-                  style: GoogleFonts.oswald(
-                    color: Colors.white,
-                    fontSize: 32.0,
-                    fontWeight: FontWeight.bold,
+  Widget build(BuildContext context) => Container(
+        child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              logger.i('Logo clicked.');
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const HomeScreen(
+                          title: 'Home',
+                        )), // this mymainpage is your page to refresh
+                (Route<dynamic> route) => false,
+              );
+            },
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: "RB",
+                    style: GoogleFonts.oswald(
+                      color: Colors.white,
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                TextSpan(
-                  text: ".",
-                  style: GoogleFonts.oswald(
-                    color: kPrimaryColor,
-                    fontSize: 36.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-              ],
+                  TextSpan(
+                    text: ".",
+                    style: GoogleFonts.oswald(
+                      color: kPrimaryColor,
+                      fontSize: 36.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class HeaderRow extends StatelessWidget {

@@ -4,7 +4,6 @@ import 'package:my_portfolio/utils/constants.dart';
 import '../../utils/globals.dart';
 import 'components/home_body.dart';
 import 'components/home_header.dart';
-import 'dart:ui';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
