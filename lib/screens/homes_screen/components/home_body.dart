@@ -32,7 +32,7 @@ class _HomeBodyState extends State {
               mainAxisAlignment: MainAxisAlignment.center,
               direction:
                   constraints.maxWidth > 720 ? Axis.horizontal : Axis.vertical,
-              children: const [HomeCarouse()]),
+              children: const [HomeCarousel()]),
         ),
       );
 }
