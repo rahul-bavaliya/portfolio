@@ -6,8 +6,8 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/screen_helper.dart';
 
-class HomeCarouse extends StatelessWidget {
-  const HomeCarouse({super.key});
+class HomeCarousel extends StatelessWidget {
+  const HomeCarousel({super.key});
 
   @override
   Widget build(BuildContext context) => ScreenHelper(
@@ -182,9 +182,22 @@ List<HomeCarouselItem> carouselItems = List.generate(
         ],
       ),
     ),
-    image: Image.asset(
-      "assets/images/home_img_1.png",
-      fit: BoxFit.contain,
+    image: Stack(
+      children: <Widget>[
+        Container(
+          width: 512,
+          height: 512,
+          child: Image.asset('assets/images/home_img_1.png'),
+        ),
+        Positioned(
+          left: 310,
+          top: 400,
+          child: TextButton(
+            onPressed: () {},
+            child:
+          
+        )
+      ],
     ),
   ),
 );
