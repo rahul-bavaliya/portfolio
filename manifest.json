@@ -1,7 +1,7 @@
 {
-    "name": "my_portfolio",
-    "short_name": "my_portfolio",
-    "start_url": ".",
+    "name": "Rahul Portfolio",
+    "short_name": "Rahul Portfolio",
+    "start_url": "/root/",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
