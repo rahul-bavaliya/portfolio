@@ -1,24 +1,20 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:my_portfolio/models/home_carousel_item.dart';
 import 'package:my_portfolio/services/download_service.dart';
-import 'package:my_portfolio/utils/downloads.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 
 import '../../../utils/constants.dart';
 import '../../../utils/screen_helper.dart';
 
+var logger = Logger(
+  printer: PrettyPrinter(),
+);
+
 class HomeCarousel extends StatelessWidget {
   const HomeCarousel({super.key});
-
-  Future<void> downloadFile(String url) async {
-    DownloadService downloadService =
-        kIsWeb ? WebDownloadService() : MobileDownloadService();
-    await downloadService.download(url: url);
-  }
 
   @override
   Widget build(BuildContext context) => ScreenHelper(
@@ -226,3 +222,10 @@ List<HomeCarouselItem> carouselItems = List.generate(
     ),
   ),
 );
+
+Future<void> downloadFile(String url) async {
+  DownloadService downloadService =
+      kIsWeb ? WebDownloadService() : MobileDownloadService();
+  logger.d("Download URL:$url");
+  await downloadService.download(url: url);
+}

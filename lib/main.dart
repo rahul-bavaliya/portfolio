@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'app.dart';
 
 void main() {
-  runApp(MyPortfolio(
-    key: UniqueKey(),
-  ));
+  runApp(
+    MyPortfolio(
+      key: UniqueKey(),
+    ),
+  );
 }
